@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBHX's Blog - 主页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-left"></div>
+        <div class="loading-right"></div>
+        <div class="loading-content">
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="loading-text">正在加载中...</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- 背景 -->
+        <div class="background"></div>
+        <!-- 上一张背景按钮，仅收集状态下显示 -->
+        <button id="prev-bg-btn" class="bg-btn prev-bg-btn" title="上一张背景">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="header">
+                <div class="nav-container">
+                    <div class="logo">
+                        <img src="images/qbhxlogo.png" alt="Logo" class="logo-img">
+                        <span class="logo-text">QBHX's Blog</span>
+                    </div>
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-item active">首页</a>
+                        <a href="#" class="nav-item">博客</a>
+                        <a href="#" class="nav-item">项目</a>
+                        <a href="#" class="nav-item">关于</a>
+                        <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- 收集/展开按钮 -->
+            <button id="collect-btn" class="collect-btn" title="收集/展开模块">
+                <i class="fas fa-compress-alt"></i>
+            </button>
+            <!-- 下一张背景按钮，仅收集状态下显示 -->
+            <button id="next-bg-btn" class="bg-btn next-bg-btn" title="下一张背景">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- 主要内容区域 -->
+            <div class="content-grid" id="content-grid">
+                <!-- 第一行：个人信息、一言、音乐 -->
+                    <!-- 个人信息卡片 -->
+                    <div class="profile-card glass-card">
+                        <div class="avatar-container">
+                            <img src="images/qbhxlogo.png" alt="头像" class="avatar">
+                        </div>
+                        <h2 class="username">千杯寒雪</h2>
+                        <p class="bio">热爱技术与生活，将学习贯彻到底</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>安徽 芜湖</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-code"></i>
+                                <span>学生 个人开发者</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>移动互联应用技术</span>
+                            </div>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>qbhx2580@outlook.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-qq"></i>
+                                <span>3358526393</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/qbhx224" class="social-link" target="_blank" title="GitHub">
+                                <img src="images/icons/github.png" alt="GitHub" class="social-icon">
+                            </a>
+                            <a href="https://x.com/qbhx_luck" class="social-link" target="_blank" title="Twitter">
+                                <img src="images/icons/twitter.png" alt="Twitter" class="social-icon">
+                            </a>
+                            <a href="https://space.bilibili.com/383024178" class="social-link" target="_blank" title="Bilibili">
+                                <img src="images/icons/bilibili.png" alt="Bilibili" class="social-icon">
+                            </a>
+                            <a href="mailto:qbhx2580@outlook.com" class="social-link" title="Email">
+                                <img src="images/icons/email.png" alt="Email" class="social-icon">
+                            </a>
+                            <a href="https://t.me/qhhx2580" class="social-link" target="_blank" title="Telegram">
+                                <img src="images/icons/telegram.png" alt="Telegram" class="social-icon">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 一言卡片 -->
+                    <div class="hitokoto-card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-quote-left"></i> 一言</h3>
+                            <button id="refresh-hitokoto" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="hitokoto-content">
+                            <div class="hitokoto-main">
+                                <div class="quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p id="hitokoto-text">正在加载一言...</p>
+                                <div class="quote-icon right">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
+                            </div>
+                            <p id="hitokoto-author">—— 佚名</p>
+                            
+                            <div class="hitokoto-mood">
+                                <span class="mood-label">今日心情：</span>
+                                <span class="mood-emoji" id="hitokoto-mood">😊</span>
+                            </div>
+                            
+                            <div class="hitokoto-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span id="hitokoto-views">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-heart"></i>
+                                    <span id="hitokoto-likes">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span id="hitokoto-date">今日</span>
+                                </div>
+                            </div>
+                            
+                            <div class="hitokoto-tags">
+                                <span class="tag" id="hitokoto-type">生活</span>
+                                <span class="tag" id="hitokoto-category">感悟</span>
+                            </div>
+                            
+                            <div class="hitokoto-actions">
+                                <button class="action-btn like-btn" id="like-hitokoto">
+                                    <i class="fas fa-heart"></i>
+                                    <span>喜欢</span>
+                                </button>
+                                <button class="action-btn share-btn" id="share-hitokoto">
+                                    <i class="fas fa-share-alt"></i>
+                                    <span>分享</span>
+                                </button>
+                                <button class="action-btn copy-btn" id="copy-hitokoto">
+                                    <i class="fas fa-copy"></i>
+                                    <span>复制</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 音乐播放器 -->
+                    <div class="music-card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-music"></i> 音乐</h3>
+                            <div class="music-controls">
+                                <button id="prev-btn" class="control-btn"><i class="fas fa-step-backward"></i></button>
+                                <button id="play-btn" class="control-btn"><i class="fas fa-play"></i></button>
+                                <button id="next-btn" class="control-btn"><i class="fas fa-step-forward"></i></button>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <div class="music-cover">
+                                <img id="music-cover" src="images/default-cover.jpg" alt="封面">
+                            </div>
+                            <div class="music-details">
+                                <div id="music-title" class="music-title">未播放</div>
+                                <div id="music-artist" class="music-artist">未知歌手</div>
+                            </div>
+                        </div>
+                        <div class="music-progress">
+                            <div class="progress-bar">
+                                <div id="music-progress" class="progress-fill"></div>
+                            </div>
+                            <div class="time-info">
+                                <span id="music-current-time">0:00</span>
+                                <span id="total-time">0:00</span>
+                            </div>
+                        </div>
+                        <div class="music-lyrics">
+                            <div class="lyrics-content" id="lyrics-content">
+                                <div class="lyrics-scroll-container" id="lyrics-scroll-container">
+                                    <div class="lyrics-placeholder">暂无歌词</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="music-controls-bottom">
+                            <button id="playlist-btn" class="control-btn" title="播放列表"><i class="fas fa-list"></i></button>
+                            <button id="search-btn" class="control-btn" title="搜索音乐"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                <!-- 第二行：时间天气、时光进度、快捷链接 -->
+                    <!-- 时间天气模块 -->
+                    <div class="info-module glass-card">
+                        <div class="module-header">
+                            <h3><i class="fas fa-clock"></i> 时间与天气</h3>
+                        </div>
+                        <div class="info-content">
+                            <div class="datetime-section">
+                                <div class="date-info">
+                                    <div id="current-date" class="date">2024年1月1日</div>
+                                    <div id="current-time" class="time">00:00:00</div>
+                                </div>
+                            </div>
+                            <div class="weather-section">
+                                <div class="weather-info">
+                                    <div class="weather-location">
+                                        <span id="weather-city">芜湖</span>
+                                        <button id="change-city" class="city-btn">切换城市</button>
+                                    </div>
+                                    <div class="weather-details">
+                                        <div id="weather-temp" class="temperature">--°C</div>
+                                        <div id="weather-desc" class="description">--</div>
+                                        <div id="weather-humidity" class="humidity">湿度: --%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 时光进度模块 -->
+                    <div class="progress-module glass-card">
+                        <div class="module-header">
+                            <h3><i class="fas fa-chart-line"></i> 时光进度</h3>
+                            <button id="expand-progress" class="expand-btn" title="查看详细信息">
+                                <i class="fas fa-expand-alt"></i>
+                            </button>
+                        </div>
+                        <div class="progress-content">
+                            <div class="progress-item">
+                                <div class="progress-label">今日进度</div>
+                                <div class="progress-bar">
+                                    <div id="today-progress" class="progress-fill"></div>
+                                </div>
+                                <div id="today-text" class="progress-text">0%</div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">本周进度</div>
+                                <div class="progress-bar">
+                                    <div id="week-progress" class="progress-fill"></div>
+                                </div>
+                                <div id="week-text" class="progress-text">0%</div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">本月进度</div>
+                                <div class="progress-bar">
+                                    <div id="month-progress" class="progress-fill"></div>
+                                </div>
+                                <div id="month-text" class="progress-text">0%</div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">今年进度</div>
+                                <div class="progress-bar">
+                                    <div id="year-progress" class="progress-fill"></div>
+                                </div>
+                                <div id="year-text" class="progress-text">0%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 快捷链接模块 -->
+                    <div class="links-module glass-card">
+                        <div class="module-header">
+                            <h3><i class="fas fa-link"></i> 快捷链接</h3>
+                        </div>
+                        <div class="links-grid">
+                            <a href="#" class="link-item">
+                                <i class="fas fa-blog"></i>
+                                <span>博客文章</span>
+                            </a>
+                            <a href="#" class="link-item">
+                                <i class="fas fa-code"></i>
+                                <span>项目展示</span>
+                            </a>
+                            <a href="#" class="link-item">
+                                <i class="fas fa-user"></i>
+                                <span>关于我</span>
+                            </a>
+                            <a href="#" class="link-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>联系方式</span>
+                            </a>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+        <!-- 城市选择模态框 -->
+        <div id="city-modal" class="modal">
+            <div class="modal-content city-modal">
+                <div class="modal-header">
+                    <h3>选择城市</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="city-selector">
+                        <div class="province-section">
+                            <h4>省份</h4>
+                            <div class="province-list" id="province-list"></div>
+                        </div>
+                        <div class="city-section">
+                            <h4>城市</h4>
+                            <div class="city-list" id="city-list"></div>
+                        </div>
+                        <div class="district-section">
+                            <h4>区县</h4>
+                            <div class="district-list" id="district-list"></div>
+                        </div>
+                    </div>
+                    <div class="selected-location">
+                        <span>当前选择：</span>
+                        <span id="selected-location">未选择</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 音乐搜索模态框 -->
+        <div id="music-modal" class="modal">
+            <div class="modal-content music-modal">
+                <div class="modal-header">
+                    <h3>搜索音乐</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="search-container">
+                        <input type="text" id="music-search-modal" placeholder="输入歌曲名或歌手名..." class="search-input">
+                        <button id="search-music-btn" class="search-btn">搜索</button>
+                    </div>
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 播放列表模态框 -->
+        <div id="playlist-modal" class="modal">
+            <div class="modal-content playlist-modal">
+                <div class="modal-header">
+                    <h3>播放列表</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="playlist-info">
+                        <div class="playlist-title">当前播放列表</div>
+                        <div class="playlist-count" id="playlist-count">共 0 首歌曲</div>
+                    </div>
+                    <div class="playlist-tracks" id="playlist-tracks"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 时光进度详细信息模态框 -->
+        <div id="progress-modal" class="modal">
+            <div class="modal-content progress-modal">
+                <div class="modal-header">
+                    <h3>时光进度详情</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="progress-details">
+                        <div class="detail-item">
+                            <div class="detail-header">
+                                <i class="fas fa-sun"></i>
+                                <span>今日进度</span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-progress">
+                                    <div class="progress-bar">
+                                        <div id="detail-today-progress" class="progress-fill"></div>
+                                    </div>
+                                    <div id="detail-today-text" class="progress-text">0%</div>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="time-info">
+                                        <span class="label">已过时间：</span>
+                                        <span id="today-elapsed" class="value">0小时0分钟</span>
+                                    </div>
+                                    <div class="time-info">
+                                        <span class="label">剩余时间：</span>
+                                        <span id="today-remaining" class="value">24小时0分钟</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-header">
+                                <i class="fas fa-calendar-week"></i>
+                                <span>本周进度</span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-progress">
+                                    <div class="progress-bar">
+                                        <div id="detail-week-progress" class="progress-fill"></div>
+                                    </div>
+                                    <div id="detail-week-text" class="progress-text">0%</div>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="time-info">
+                                        <span class="label">已过时间：</span>
+                                        <span id="week-elapsed" class="value">0天0小时</span>
+                                    </div>
+                                    <div class="time-info">
+                                        <span class="label">剩余时间：</span>
+                                        <span id="week-remaining" class="value">7天0小时</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-header">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>本月进度</span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-progress">
+                                    <div class="progress-bar">
+                                        <div id="detail-month-progress" class="progress-fill"></div>
+                                    </div>
+                                    <div id="detail-month-text" class="progress-text">0%</div>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="time-info">
+                                        <span class="label">已过时间：</span>
+                                        <span id="month-elapsed" class="value">0天0小时</span>
+                                    </div>
+                                    <div class="time-info">
+                                        <span class="label">剩余时间：</span>
+                                        <span id="month-remaining" class="value">30天0小时</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-header">
+                                <i class="fas fa-calendar"></i>
+                                <span>今年进度</span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-progress">
+                                    <div class="progress-bar">
+                                        <div id="detail-year-progress" class="progress-fill"></div>
+                                    </div>
+                                    <div id="detail-year-text" class="progress-text">0%</div>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="time-info">
+                                        <span class="label">已过时间：</span>
+                                        <span id="year-elapsed" class="value">0天0小时</span>
+                                    </div>
+                                    <div class="time-info">
+                                        <span class="label">剩余时间：</span>
+                                        <span id="year-remaining" class="value">365天0小时</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
